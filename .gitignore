@@ -1,0 +1,25 @@
+# File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
+# Created by https://www.toptal.com/developers/gitignore/api/hugo
+# Edit at https://www.toptal.com/developers/gitignore?templates=hugo
+
+### Hugo ###
+# Generated files by hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+
+hugo_stats.json
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# Temporary lock file while building
+/.hugo_build.lock
+
+themes/*
+
+# End of https://www.toptal.com/developers/gitignore/api/hugo
+
+# Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)

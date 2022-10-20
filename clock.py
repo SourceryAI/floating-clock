@@ -9,9 +9,20 @@ from PySide6.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget
 class Clock(QWidget):
 
     def __init__(self):
+
         super().__init__()
-        # setting geometry of main window
-        self.setGeometry(40, 40, 200, 120)
+        self.left = 10
+        self.top = 10
+        self.width = 320
+        self.height = 60
+
+        self.initUI()
+
+    def initUI(self):
+
+        # geometry of main window
+        self.setGeometry(self.left, self.top, self.width, self.height)
+
         # self.setWindowOpacity(0.5)
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -40,8 +51,7 @@ class Clock(QWidget):
         timer.timeout.connect(self.showTime)
         # update the timer every second
         timer.start(1000)
-
-        # button
+        self.show()
 
     # method called by timer
     def showTime(self):

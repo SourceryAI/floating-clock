@@ -26,6 +26,7 @@ class Clock(QWidget):
         # self.setWindowOpacity(0.5)
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setMouseTracking(True)
 
         # font
         font = QFont()
@@ -38,10 +39,10 @@ class Clock(QWidget):
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setFont(font)
         self.label.setStyleSheet("color:rgb(0,0,0);")
-        # self.label.setAutoFillBackground(True)
 
         # layout
-        layout = QVBoxLayout()
+        layout = QVBoxLayout(self, spacing=0)
+
         # add label to the layout
         layout.addWidget(self.label)
         self.setLayout(layout)
@@ -53,7 +54,6 @@ class Clock(QWidget):
         timer.start(1000)
         self.show()
 
-    # method called by timer
     def showTime(self):
         # getting current time
         current_time = QTime.currentTime()
@@ -65,6 +65,7 @@ class Clock(QWidget):
 
 
 if __name__ == '__main__':
+
     # app
     App = QApplication(sys.argv)
     # window

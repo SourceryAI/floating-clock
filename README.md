@@ -6,8 +6,9 @@
   - [ ] Show in Fullscreen mode
   - [ ] Right click to show menu
 - [ ] Font
-  - [ ] Autoresizing
-  - [ ] Color & Transparency
+  - [ ] Size Adjustment
+  - [ ] Color Adjustment
+  - [ ] Transparency Adjustment
 - [ ] Label
   - [ ] Time Zone Selection
   - [ ] Multiple Timers

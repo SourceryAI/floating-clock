@@ -2,7 +2,8 @@
 
 - [ ] Main Window
   - [x] Frameless
-  - [ ] Drag and Move
+  - [x] Drag and Move
+  - [ ] Show in Fullscreen mode
   - [ ] Right click to show menu
 - [ ] Font
   - [ ] Autoresizing

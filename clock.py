@@ -1,78 +1,84 @@
-﻿# importing required librarie
-import sys
+﻿import sys
 
-from PySide6.QtCore import Qt, QTime, QTimer
-from PySide6.QtGui import QFont
+from PySide6.QtCore import QPoint, Qt, QTime, QTimer
+from PySide6.QtGui import QFont, QMouseEvent
 from PySide6.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget
 
 
 class Clock(QWidget):
 
-    def __init__(self):
+    def __init__(self, parent=None) -> None:
+        super().__init__(parent)
 
-        super().__init__()
         self.left = 10
         self.top = 10
         self.width = 320
         self.height = 60
 
+        # mouse
+        self.pressed = False
+        self.oldPos = QPoint(0, 0)
+
         self.initUI()
 
-    def initUI(self):
+    def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.pressed = True
+        self.oldPos = event.pos()
+        return super().mousePressEvent(event)
+
+    def mouseMoveEvent(self, event: QMouseEvent) -> None:
+        if self.pressed:
+            self.move(self.pos() + (event.pos() - self.oldPos))
+        return super().mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event: QMouseEvent) -> None:
+        self.pressed = False
+        self.oldPos = event.pos()
+        return super().mouseReleaseEvent(event)
+
+    def initUI(self) -> None:
 
         # geometry of main window
         self.setGeometry(self.left, self.top, self.width, self.height)
 
-        # self.setWindowOpacity(0.5)
+        # hide frame
         self.setAttribute(Qt.WA_TranslucentBackground, True)
         self.setWindowFlags(Qt.FramelessWindowHint)
-        self.setMouseTracking(True)
 
         # font
         font = QFont()
         font.setFamily("Arial")
-        font.setPointSize(60)
-        font.setBold(True)
+        font.setPointSize(50)
+        # font.setBold(True)
 
         # label object
         self.label = QLabel()
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setFont(font)
-        self.label.setStyleSheet("color:rgb(0,0,0);")
+        self.label.setStyleSheet("color:#27282a;")
 
         # layout
         layout = QVBoxLayout(self, spacing=0)
 
-        # add label to the layout
-        layout.addWidget(self.label)
+        layout.addWidget(self.label)  # add label
         self.setLayout(layout)
 
         # timer object
         timer = QTimer(self)
         timer.timeout.connect(self.showTime)
-        # update the timer every second
-        timer.start(1000)
+        timer.start(1000)  # update the timer per second
         self.show()
 
-    def showTime(self):
-        # getting current time
-        current_time = QTime.currentTime()
-        # converting QTime object to string
-        label_time = current_time.toString('hh:mm')
+    def showTime(self) -> None:
 
-        # show it to the label
-        self.label.setText(label_time)
+        current_time = QTime.currentTime()  # get the current time
+        label_time = current_time.toString('hh:mm')  # convert timer to string
+        self.label.setText(label_time)  # show it to the label
 
 
 if __name__ == '__main__':
 
-    # app
     App = QApplication(sys.argv)
-    # window
     clock = Clock()
-
-    # show all the widgets
-    clock.show()
-
-    # start the app
-    App.exit(App.exec())
+    clock.show()  # show all the widgets
+    App.exit(App.exec())  # start the app

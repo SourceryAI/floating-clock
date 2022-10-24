@@ -10,8 +10,8 @@ class Clock(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
-        self.left = 10
-        self.top = 10
+        self.left = 1100
+        self.top = 800
         self.width = 320
         self.height = 60
 
@@ -107,12 +107,6 @@ class Clock(QWidget):
 
         self.menu.exec(self.mapToGlobal(pos))
 
-    def showTime(self) -> None:
-
-        current_time = QTime.currentTime()  # get the current time
-        label_time = current_time.toString('hh:mm')  # convert timer to string
-        self.label.setText(label_time)  # show it to the label
-
     def initUI(self) -> None:
 
         # geometry of main window
@@ -146,6 +140,12 @@ class Clock(QWidget):
         timer.timeout.connect(self.showTime)
         timer.start(1000)  # update the timer per second
         self.show()
+
+    def showTime(self) -> None:
+
+        current_time = QTime.currentTime()  # get the current time
+        label_time = current_time.toString('hh:mm')  # convert timer to string
+        self.label.setText(label_time)  # show it to the label
 
 
 if __name__ == '__main__':

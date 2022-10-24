@@ -374,3 +374,4 @@ CMakeLists.txt.user*
 # End of https://www.toptal.com/developers/gitignore/api/c,c++,cmake,jupyternotebooks,macos,python,qml,qt,qtcreator
 
 test.*
+*.user

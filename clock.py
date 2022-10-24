@@ -1,8 +1,8 @@
 ﻿import sys
 
 from PySide6.QtCore import QPoint, Qt, QTime, QTimer
-from PySide6.QtGui import QFont, QMouseEvent
-from PySide6.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget
+from PySide6.QtGui import QAction, QCursor, QFont, QMouseEvent
+from PySide6.QtWidgets import QApplication, QLabel, QMenu, QVBoxLayout, QWidget
 
 
 class Clock(QWidget):
@@ -18,6 +18,10 @@ class Clock(QWidget):
         # mouse
         self.pressed = False
         self.oldPos = QPoint(0, 0)
+
+        # Menu
+        self.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self.mouseRightMenu)
 
         self.initUI()
 
@@ -35,6 +39,16 @@ class Clock(QWidget):
         self.pressed = False
         self.oldPos = event.pos()
         return super().mouseReleaseEvent(event)
+
+    def mouseRightMenu(self, pos) -> None:
+        self.menu = QMenu(self)
+        self.actionA = QAction('fontsize', self)
+        self.menu.addAction(self.actionA)
+
+        self.actionB = QAction('fontcolor', self)
+        self.menu.addAction(self.actionB)
+
+        self.menu.exec(self.mapToGlobal(pos))
 
     def initUI(self) -> None:
 
@@ -55,7 +69,7 @@ class Clock(QWidget):
         self.label = QLabel()
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setFont(font)
-        self.label.setStyleSheet("color:#27282a;")
+        self.label.setStyleSheet("color:blue;")
 
         # layout
         layout = QVBoxLayout(self, spacing=0)

@@ -92,6 +92,10 @@ class Clock(QWidget):
         bgOpacityMenu.addAction(self.actionE1)
         bgOpacityMenu.addAction(self.actionE2)
 
+        self.actionZ = QAction('quit', self)
+        self.actionZ.triggered.connect(self.close)
+        self.menu.addAction(self.actionZ)
+
         self.menu.exec(self.mapToGlobal(pos))
 
     def initUI(self) -> None:
@@ -100,8 +104,9 @@ class Clock(QWidget):
         self.setGeometry(self.left, self.top, self.width, self.height)
 
         # hide frame
-        self.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint)
         self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
 
         # font
         font = QFont()

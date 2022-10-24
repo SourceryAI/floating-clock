@@ -15,7 +15,7 @@ class Clock(QWidget):
         self.width = 320
         self.height = 60
 
-        # mouse
+        # Mouse
         self.pressed = False
         self.oldPos = QPoint(0, 0)
 
@@ -23,7 +23,14 @@ class Clock(QWidget):
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.mouseRightMenu)
 
+        # Font
+        self.font_color = 'blue'
+
+        # UI
         self.initUI()
+
+    def changeFontColor(self, fcolor) -> None:
+        self.font_color = fcolor
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         self.pressed = True
@@ -56,6 +63,8 @@ class Clock(QWidget):
         self.actionB5 = QAction('orange', self)
         self.actionB6 = QAction('green', self)
         self.actionB7 = QAction('white', self)
+        self.actionB1.triggered.connect(self.changeFontColor('black'))
+        self.actionB2.triggered.connect(self.changeFontColor('red'))
         fontColorMenu.addAction(self.actionB1)
         fontColorMenu.addAction(self.actionB2)
         fontColorMenu.addAction(self.actionB3)
@@ -98,6 +107,12 @@ class Clock(QWidget):
 
         self.menu.exec(self.mapToGlobal(pos))
 
+    def showTime(self) -> None:
+
+        current_time = QTime.currentTime()  # get the current time
+        label_time = current_time.toString('hh:mm')  # convert timer to string
+        self.label.setText(label_time)  # show it to the label
+
     def initUI(self) -> None:
 
         # geometry of main window
@@ -118,7 +133,7 @@ class Clock(QWidget):
         self.label = QLabel()
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setFont(font)
-        self.label.setStyleSheet("color:blue;")
+        self.label.setStyleSheet(f"color:{self.font_color};")
 
         # layout
         layout = QVBoxLayout(self, spacing=0)
@@ -131,12 +146,6 @@ class Clock(QWidget):
         timer.timeout.connect(self.showTime)
         timer.start(1000)  # update the timer per second
         self.show()
-
-    def showTime(self) -> None:
-
-        current_time = QTime.currentTime()  # get the current time
-        label_time = current_time.toString('hh:mm')  # convert timer to string
-        self.label.setText(label_time)  # show it to the label
 
 
 if __name__ == '__main__':

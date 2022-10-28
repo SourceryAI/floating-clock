@@ -1,9 +1,8 @@
 ﻿import sys
 
-from PySide2.QtCore import QPoint, Qt, QTime, QTimer
-from PySide2.QtGui import QFont, QMouseEvent
-from PySide2.QtWidgets import (QAction, QApplication, QLabel, QMenu,
-                               QVBoxLayout, QWidget)
+from PySide6.QtCore import QPoint, Qt, QTime, QTimer
+from PySide6.QtGui import QAction, QFont, QMouseEvent
+from PySide6.QtWidgets import QApplication, QLabel, QMenu, QVBoxLayout, QWidget
 
 
 class Clock(QWidget):
@@ -154,4 +153,4 @@ if __name__ == '__main__':
     App = QApplication(sys.argv)
     clock = Clock()
     clock.show()  # show all the widgets
-    App.exit(App.exec_())  # start the app
+    App.exit(App.exec())  # start the app

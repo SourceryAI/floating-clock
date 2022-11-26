@@ -6,7 +6,6 @@ from PySide6.QtWidgets import QApplication, QLabel, QMenu, QVBoxLayout, QWidget
 
 
 class Clock(QWidget):
-
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
@@ -24,7 +23,7 @@ class Clock(QWidget):
         self.customContextMenuRequested.connect(self.mouseRightMenu)
 
         # Font
-        self.font_color = 'blue'
+        self.font_color = "blue"
 
         # UI
         self.initUI()
@@ -49,20 +48,20 @@ class Clock(QWidget):
 
     def mouseRightMenu(self, pos) -> None:
         self.menu = QMenu(self)
-        fontSizeMenu = self.menu.addMenu('font size')
-        self.actionA1 = QAction('larger', self)
-        self.actionA2 = QAction('smaller', self)
+        fontSizeMenu = self.menu.addMenu("font size")
+        self.actionA1 = QAction("larger", self)
+        self.actionA2 = QAction("smaller", self)
         fontSizeMenu.addAction(self.actionA1)
         fontSizeMenu.addAction(self.actionA2)
 
-        fontColorMenu = self.menu.addMenu('font color')
-        self.actionB1 = QAction('black', self)
-        self.actionB2 = QAction('red', self)
-        self.actionB3 = QAction('yellow', self)
-        self.actionB4 = QAction('blue', self)
-        self.actionB5 = QAction('orange', self)
-        self.actionB6 = QAction('green', self)
-        self.actionB7 = QAction('white', self)
+        fontColorMenu = self.menu.addMenu("font color")
+        self.actionB1 = QAction("black", self)
+        self.actionB2 = QAction("red", self)
+        self.actionB3 = QAction("yellow", self)
+        self.actionB4 = QAction("blue", self)
+        self.actionB5 = QAction("orange", self)
+        self.actionB6 = QAction("green", self)
+        self.actionB7 = QAction("white", self)
         # self.actionB1.triggered.connect(self.changeFontColor('black'))
         # self.actionB2.triggered.connect(self.changeFontColor('red'))
         fontColorMenu.addAction(self.actionB1)
@@ -73,20 +72,20 @@ class Clock(QWidget):
         fontColorMenu.addAction(self.actionB6)
         fontColorMenu.addAction(self.actionB7)
 
-        fontOpacityMenu = self.menu.addMenu('font opacity')
-        self.actionC1 = QAction('increase', self)
-        self.actionC2 = QAction('decrease', self)
+        fontOpacityMenu = self.menu.addMenu("font opacity")
+        self.actionC1 = QAction("increase", self)
+        self.actionC2 = QAction("decrease", self)
         fontOpacityMenu.addAction(self.actionC1)
         fontOpacityMenu.addAction(self.actionC2)
 
-        bgColorMenu = self.menu.addMenu('bg color')
-        self.actionD1 = QAction('black', self)
-        self.actionD2 = QAction('red', self)
-        self.actionD3 = QAction('yellow', self)
-        self.actionD4 = QAction('blue', self)
-        self.actionD5 = QAction('orange', self)
-        self.actionD6 = QAction('green', self)
-        self.actionD7 = QAction('white', self)
+        bgColorMenu = self.menu.addMenu("bg color")
+        self.actionD1 = QAction("black", self)
+        self.actionD2 = QAction("red", self)
+        self.actionD3 = QAction("yellow", self)
+        self.actionD4 = QAction("blue", self)
+        self.actionD5 = QAction("orange", self)
+        self.actionD6 = QAction("green", self)
+        self.actionD7 = QAction("white", self)
         bgColorMenu.addAction(self.actionD1)
         bgColorMenu.addAction(self.actionD2)
         bgColorMenu.addAction(self.actionD3)
@@ -95,13 +94,13 @@ class Clock(QWidget):
         bgColorMenu.addAction(self.actionD6)
         bgColorMenu.addAction(self.actionD7)
 
-        bgOpacityMenu = self.menu.addMenu('bg opacity')
-        self.actionE1 = QAction('increase', self)
-        self.actionE2 = QAction('decrease', self)
+        bgOpacityMenu = self.menu.addMenu("bg opacity")
+        self.actionE1 = QAction("increase", self)
+        self.actionE2 = QAction("decrease", self)
         bgOpacityMenu.addAction(self.actionE1)
         bgOpacityMenu.addAction(self.actionE2)
 
-        self.actionZ = QAction('quit', self)
+        self.actionZ = QAction("quit", self)
         self.actionZ.triggered.connect(self.close)
         self.menu.addAction(self.actionZ)
 
@@ -144,11 +143,11 @@ class Clock(QWidget):
     def showTime(self) -> None:
 
         current_time = QTime.currentTime()  # get the current time
-        label_time = current_time.toString('hh:mm')  # convert timer to string
+        label_time = current_time.toString("hh:mm")  # convert timer to string
         self.label.setText(label_time)  # show it to the label
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     App = QApplication(sys.argv)
     clock = Clock()

@@ -6,7 +6,6 @@ from PySide6.QtWidgets import QApplication, QLabel, QMenu, QVBoxLayout, QWidget
 
 
 class Clock(QWidget):
-
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
 
@@ -24,7 +23,7 @@ class Clock(QWidget):
         self.customContextMenuRequested.connect(self.mouseRightMenu)
 
         # Font
-        self.font_color = 'blue'
+        self.font_color = "blue"
 
         # UI
         self.initUI()
@@ -46,13 +45,13 @@ class Clock(QWidget):
 
     def mouseRightMenu(self, pos) -> None:
         self.menu = QMenu(self)
-        fontSizeMenu = self.menu.addMenu('font size')
-        self.actionA1 = QAction('larger', self)
-        self.actionA2 = QAction('smaller', self)
+        fontSizeMenu = self.menu.addMenu("font size")
+        self.actionA1 = QAction("larger", self)
+        self.actionA2 = QAction("smaller", self)
         fontSizeMenu.addAction(self.actionA1)
         fontSizeMenu.addAction(self.actionA2)
 
-        self.actionZ = QAction('quit', self)
+        self.actionZ = QAction("quit", self)
         self.actionZ.triggered.connect(self.close)
         self.menu.addAction(self.actionZ)
 
@@ -95,11 +94,11 @@ class Clock(QWidget):
     def showTime(self) -> None:
 
         current_time = QTime.currentTime()  # get the current time
-        label_time = current_time.toString('hh:mm')  # convert timer to string
+        label_time = current_time.toString("hh:mm")  # convert timer to string
         self.label.setText(label_time)  # show it to the label
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     App = QApplication(sys.argv)
     clock = Clock()
